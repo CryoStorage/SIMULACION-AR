@@ -1,4 +1,4 @@
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -7,9 +7,9 @@ using UnityEngine.XR.ARSubsystems;
 public class AR_SpawnOnPlane : MonoBehaviour
 {
     public GameObject prefab;
-    List<GameObject> spawnedObjects = new List<GameObject>();
-    ARRaycastManager raycastManager;
+    private List<GameObject> spawnedObjects = new List<GameObject>();
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    ARRaycastManager raycastManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +38,7 @@ public class AR_SpawnOnPlane : MonoBehaviour
             touchPos = Input.GetTouch(0).position;
             return true;
         }
-
+        return false;
     }
 
     void Prepare()
