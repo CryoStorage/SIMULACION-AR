@@ -8,8 +8,8 @@ public class AR_SpawnOnPlane : MonoBehaviour
 {
     public GameObject prefab;
     private List<GameObject> spawnedObjects = new List<GameObject>();
-    private List<ARRaycastHit> hits = new List<ARRaycastHit>();
-    ARRaycastManager raycastManager;
+    private ARRaycastManager raycastManager;
+    List<ARRaycastHit> hits = new List<ARRaycastHit>();
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class AR_SpawnOnPlane : MonoBehaviour
             return;
         }
 
-        if (raycastManager.Raycast(touchPos, this, TrackableType.PlaneWithinPolygon))
+        if (raycastManager.Raycast(touchPos, hits, TrackableType.PlaneWithinPolygon))
         {
             var hitPos = hits[0].pose;
             spawnedObjects.Add(Instantiate(prefab, hitPos.position, hitPos.rotation));
@@ -38,6 +38,8 @@ public class AR_SpawnOnPlane : MonoBehaviour
             touchPos = Input.GetTouch(0).position;
             return true;
         }
+
+        touchPos = default;
         return false;
     }
 
